@@ -7,12 +7,26 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
 function pigLatin(word) {
-
-  // Your code here
-
+  let vowels = ['a','e','i','o','u'];
+  let split = word.split('');
+  let newWord = '';
+  for(let i = 0; i < vowels.length; i++) {
+      for(let y = 0; y < word.length; y++) {
+          if(word[y] === vowels[i]) {
+              for(let x = y; x < word.length; x++){
+                  newWord = newWord + word[x];
+              }
+              for(let n = 0; n < y; n++){
+                  newWord = newWord + word[n];
+              }
+              return newWord + "ay";
+          }
+      }
+  }
 }
+
+pigLatin("");
 
 
 function getPrompt() {

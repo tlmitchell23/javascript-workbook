@@ -7,33 +7,25 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-const rock = "rock";
-const scissors = "scissors";
-const paper = "paper";
-
 function rockPaperScissors(hand1, hand2) {
-
   switch (hand1) {
   case hand2:
     return "Tie";
-  case "rock":
-    {
-      if (hand2 == "scissors")
-        return "Hand 1 Wins"
-      else
-            return "Hand 2 Wins";
-    }
+  case "rock":{
+    if (hand2 == "scissors")
+      return "Hand 1 Wins"
+    else
+      return "Hand 2 Wins";
+  }
     break;
-  case "scissors":
-    {
+  case "scissors":{
       if (hand2 == "paper")
         return "Hand 1 Wins"
       else
         return "Hand 2 Wins";
     }
     break;
-  case "paper":
-    {
+  case "paper":{
       if (hand2 == "rock")
         return " Hand 1 Wins!"
       else
@@ -42,7 +34,7 @@ function rockPaperScissors(hand1, hand2) {
   }
 }
 
-console.log(rockPaperScissors(paper, rock));
+console.log(rockPaperScissors("paper", "rock"));
 
 function getPrompt() {
   rl.question('hand1: ', (answer1) => {
