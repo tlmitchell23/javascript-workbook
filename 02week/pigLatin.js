@@ -7,13 +7,25 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
 function pigLatin(word) {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  const output = word.split('');
 
-  // Your code here
-
+  if (vowels.includes(word[0])) {
+    return word += 'way';
+  } else {
+    for (let i = 0; i < word.length; i++) {
+      if (!vowels.includes(word[i])) {
+        output.push(output.shift());
+      } else {
+        output.push('ay');
+        return output.join('');
+      }
+    }
+  }
 }
 
+pigLatin('');
 
 function getPrompt() {
   rl.question('word ', (answer) => {
