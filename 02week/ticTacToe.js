@@ -24,23 +24,63 @@ function printBoard() {
 }
 
 function horizontalWin() {
-  // Your code here
+  return board[0].every(square => square === playerTurn) ||
+         board[1].every(square => square === playerTurn) ||
+         board[2].every(square => square === playerTurn);
 }
 
 function verticalWin() {
-  // Your code here
+  return [board[0][0], board[1][0], board[2][0]].every(square => square === playerTurn) ||
+         [board[0][1], board[1][1], board[2][1]].every(square => square === playerTurn) ||
+         [board[0][2], board[1][2], board[2][2]].every(square => square === playerTurn);
 }
 
 function diagonalWin() {
-  // Your code here
+  return [board[0][0], board[1][1], board[2][2]].every(square => square === playerTurn) ||
+         [board[0][2], board[1][1], board[2][0]].every(square => square === playerTurn);
 }
 
 function checkForWin() {
-  // Your code here
+  if (horizontalWin()) {
+    printBoard();
+    return true;
+  } else if (verticalWin()) {
+    printBoard();
+    return true;
+  } else if (diagonalWin()) {
+    printBoard();
+    return true;
+  }
+  return false;
 }
 
 function ticTacToe(row, column) {
-  // Your code here
+  const validValue = (myIndex) => {
+    const values = [0,1,2];
+    return values.some(validIndex => myIndex == validIndex);
+  }
+
+  if (validValue(row) && validValue(column)) {
+    if (!board[row][column].trim() ) {
+      board[row][column] = playerTurn;
+
+      if (!checkForWin()) {
+        if (playerTurn === 'X') {
+          playerTurn = 'O';
+        } else {
+          playerTurn = 'X';
+        }
+        return false;
+      } else {
+        console.log(`Winner Player ${playerTurn}!!!!!!`);
+        return true;
+      }
+    } else {
+      console.log('Already chosen square');
+    }
+  } else {
+    console.log('Valid values are 0, 1, 2');
+  }
 }
 
 function getPrompt() {
@@ -48,14 +88,15 @@ function getPrompt() {
   console.log("It's Player " + playerTurn + "'s turn.");
   rl.question('row: ', (row) => {
     rl.question('column: ', (column) => {
-      ticTacToe(row, column);
-      getPrompt();
+      if (!ticTacToe(row, column)) {
+        getPrompt();
+      } else {
+        process.exit(0);
+      }
     });
   });
 
 }
-
-
 
 // Tests
 
