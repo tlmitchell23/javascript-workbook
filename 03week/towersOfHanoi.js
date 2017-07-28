@@ -18,26 +18,57 @@ function printStacks() {
   console.log("b: " + stacks.b);
   console.log("c: " + stacks.c);
 }
-
+//Moving the numbers over to each stack
+//We need to remove the last number in the startStack
+//And move it to the end of the endStack
 function movePiece() {
-  // Your code here
-
+  endStack.array.push(startStack.array.pop);
 }
+//We must confirm each move is legal
+//The start stack must have a number in it to move
+//The number in the array needs to be less than the number already in the stack
+function isLegal(startStack, endStack) {
+  if (stacks[startStack].length === 0) {
+  return false;
+} else if
+   (stacks[endStack].length === 0)
+  return true;
+} else {
+  return stacks[startStack][stacks[startStack].length-1 < stacks[endStack][stacks[endStack].length-1];
 
-function isLegal() {
-  // Your code here
-
-}
-
+//Check for a win after each move
+//In this case when all 4 numbers are in either stack a or b = Win!
+//This is for a 4 stack tower only
 function checkForWin() {
-  // Your code here
-
+  if (stacks.b.length === 4 || stacks.c.length === 4) {
+    return true;
+  } else {
+    return false;
+  }
 }
-
+//Aslong as the move is legal you can next move the block.
+//If the move is legal and we can move a piece we will next check for a win
+//
 function towersOfHanoi(startStack, endStack) {
-  // Your code here
-
+  const validEntry = (myMove) => {
+      const entry = ["a","b","c"];
+      return entry.some(validEntry => myMove = validEntry);
 }
+  if isLegal(myMove) {
+    if movePiece ()
+      return true;
+  }   checkForWin() {
+     if true {
+      console.log("Winner!!!!!!!");
+    } else if {
+      console.log("Incorrect entry try again");
+    } else if {
+      console.log("Cannot move to this stack");
+     return false;
+}
+
+
+
 
 function getPrompt() {
   printStacks();
