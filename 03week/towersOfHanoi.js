@@ -21,25 +21,25 @@ function printStacks() {
 //Moving the numbers over to each stack
 //We need to remove the last number in the startStack
 //And move it to the end of the endStack
-function movePiece() {
-  endStack.array.push(startStack.array.pop);
+function movePiece(startStack, endStack) {
+  stacks[endStack].push(stacks[startStack].pop());
 }
 //We must confirm each move is legal
 //The start stack must have a number in it to move
 //The number in the array needs to be less than the number already in the stack
 function isLegal(startStack, endStack) {
-  if (stacks[startStack].length === 0) {
-  return false;
-} else if
-   (stacks[endStack].length === 0)
-  return true;
-} else {
-  return stacks[startStack][stacks[startStack].length-1 < stacks[endStack][stacks[endStack].length-1];
-
+   if (stacks[startStack].length === 0) {
+   return false;
+ } else if (stacks[endStack].length === 0) {
+   return true;
+ } else {
+   return stacks[startStack][stacks[startStack].length-1] < stacks[endStack][stacks[endStack].length-1];
+ }
+}
 //Check for a win after each move
 //In this case when all 4 numbers are in either stack a or b = Win!
 //This is for a 4 stack tower only
-function checkForWin() {
+function checkForWin(startStack, endStack) {
   if (stacks.b.length === 4 || stacks.c.length === 4) {
     return true;
   } else {
@@ -50,25 +50,19 @@ function checkForWin() {
 //If the move is legal and we can move a piece we will next check for a win
 //
 function towersOfHanoi(startStack, endStack) {
-  const validEntry = (myMove) => {
-      const entry = ["a","b","c"];
-      return entry.some(validEntry => myMove = validEntry);
-}
-  if isLegal(myMove) {
-    if movePiece ()
-      return true;
-  }   checkForWin() {
-     if true {
+  const validEntry = (myStack) => {
+    const entry = ["a","b","c"];
+    return entry.some(validEntry => myStack === validEntry);
+  }
+  if (validEntry(startStack) && validEntry(endStack) && isLegal(startStack, endStack)) {
+    movePiece (startStack, endStack);
+    if (checkForWin(startStack, endStack)) {
       console.log("Winner!!!!!!!");
-    } else if {
-      console.log("Incorrect entry try again");
-    } else if {
-      console.log("Cannot move to this stack");
-     return false;
+    }
+  } else {
+    console.log("Cannot move to this stack");
+  }
 }
-
-
-
 
 function getPrompt() {
   printStacks();
