@@ -41,46 +41,35 @@ function diagonalWin() {
 }
 
 function checkForWin() {
-  if (horizontalWin()) {
+  if (horizontalWin() || verticalWin() || diagonalWin()){
     printBoard();
     return true;
-  } else if (verticalWin()) {
-    printBoard();
-    return true;
-  } else if (diagonalWin()) {
-    printBoard();
-    return true;
-  }
-  return false;
+  } else {
+    return false;
+ }
 }
 
 function ticTacToe(row, column) {
   const validValue = (myIndex) => {
-    const values = [0,1,2];
-    return values.some(validIndex => myIndex == validIndex);
+  const values = [0,1,2];
+  return values.some(validIndex => myIndex == validIndex);
   }
 
   if (validValue(row) && validValue(column)) {
-    if (!board[row][column].trim() ) {
+    if (!board[row][column].trim())
       board[row][column] = playerTurn;
 
       if (!checkForWin()) {
-        if (playerTurn === 'X') {
-          playerTurn = 'O';
-        } else {
-          playerTurn = 'X';
-        }
+        playerTurn = playerTurn ==='X' ? 'O' : 'X';
         return false;
       } else {
-        console.log(`Winner Player ${playerTurn}!!!!!!`);
-        return true;
-      }
-    } else {
+        console.log(`Winner Player ${playerTurn} !!!!!!`);
+      } else {
       console.log('Already chosen square');
-    }
-  } else {
+    } else {
     console.log('Valid values are 0, 1, 2');
   }
+ }
 }
 
 function getPrompt() {
