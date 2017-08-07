@@ -53,7 +53,7 @@ function checkForWin() {
 //Correct entries will be placed on the row and then the column
 //We will eliminate the white spaces
 //If all tests are past we will check for a win
-//A winner will be displayed
+//A winner will be displayed!!!
 //If not a message will show to the player
 function ticTacToe(row, column) {
     const validValue = (myIndex) => {
