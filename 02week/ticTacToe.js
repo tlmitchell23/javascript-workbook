@@ -46,30 +46,32 @@ function checkForWin() {
     return true;
   } else {
     return false;
- }
+  }
 }
 
 function ticTacToe(row, column) {
-  const validValue = (myIndex) => {
-  const values = [0,1,2];
-  return values.some(validIndex => myIndex == validIndex);
-  }
+    const validValue = (myIndex) => {
+      const values = [0,1,2];
+      return values.some(validIndex => myIndex == validIndex);
+    }
 
   if (validValue(row) && validValue(column)) {
-    if (!board[row][column].trim())
+    if (!board[row][column].trim()) {
       board[row][column] = playerTurn;
 
       if (!checkForWin()) {
         playerTurn = playerTurn ==='X' ? 'O' : 'X';
         return false;
-      } else {
+      }
+      else {
         console.log(`Winner Player ${playerTurn} !!!!!!`);
-      } else {
-      console.log('Already chosen square');
+      }
     } else {
+      console.log('Already chosen square');
+    }
+  } else {
     console.log('Valid values are 0, 1, 2');
   }
- }
 }
 
 function getPrompt() {
