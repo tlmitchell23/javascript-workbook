@@ -28,13 +28,15 @@ function movePiece(startStack, endStack) {
 //The start stack must have a number in it to move
 //The number in the array needs to be less than the number already in the stack
 function isLegal(startStack, endStack) {
-   if (stacks[startStack].length === 0) {
-   return false;
- } else if (stacks[endStack].length === 0) {
-   return true;
- } else {
-   return stacks[startStack][stacks[startStack].length-1] < stacks[endStack][stacks[endStack].length-1];
- }
+  if (stacks[startStack].length === 0) {
+    return false;
+  }
+  else if (stacks[endStack].length === 0) {
+    return true;
+  }
+  else {
+    return stacks[startStack][stacks[startStack].length-1] < stacks[endStack][stacks[endStack].length-1];
+  }
 }
 //Check for a win after each move
 //In this case when all 4 numbers are in either stack a or b = Win!
