@@ -25,13 +25,29 @@ class CrewMember {
       this.specialSkill = specialSkill;
       this.ship = null;
  }
-enterShip(ship){
-     ship.crew.push(this.name);
+  enterShip(theShip) {
+     this.ship = theShip;
+     theShip.crew.push(this);
+ }
 }
 
 class Ship {
+  constructor(name, type, ability, crew) {
+      this.name = name;
+      this.type = type;
+      this.ability = ability;
+      this.crew = [];
+  }
 
+  missionStatement(message) {
+   if(this.crew > 3) {
+     return "Ascend into low orbit"
+   }else {
+     return "Can't perform a mission yet."
+  }
+ }
 }
+
 
 
 //tests
