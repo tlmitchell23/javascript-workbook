@@ -9,46 +9,36 @@ let jobTypes = {
   programmer: 'Any Ship!'
 };
 
-// CrewMember
-    //1) should have a name, a job, a specialSkill and ship upon instantiation
-  //  2) can enter a ship
-
-  //Ship
-    //3) should have a name, a type, an ability and an empty crew upon instantiation
-  //  4) can return a mission statement correctly
-
 
 class CrewMember {
   constructor(name, job, specialSkill, ship){
-      this.name = name;
-      this.job = job;
-      this.specialSkill = specialSkill;
-      this.ship = null;
- }
+    this.name = name;
+    this.job = job;
+    this.specialSkill = specialSkill;
+    this.ship = null;
+  }
   enterShip(theShip) {
-     this.ship = theShip;
-     theShip.crew.push(this);
- }
+    this.ship = theShip;
+    theShip.crew.push(this);
+  }
 }
 
 class Ship {
   constructor(name, type, ability, crew) {
-      this.name = name;
-      this.type = type;
-      this.ability = ability;
-      this.crew = [];
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = [];
   }
 
-  missionStatement(message) {
-   if(this.crew > 3) {
-     return "Ascend into low orbit"
-   }else {
+  missionStatement() {
+   if(this.crew.length > 0) {
+     return this.ability;
+   } else {
      return "Can't perform a mission yet."
+   }
   }
  }
-}
-
-
 
 //tests
 if (typeof describe === 'function'){
