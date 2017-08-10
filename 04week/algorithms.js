@@ -11,7 +11,7 @@ function getRandomInt(min, max) {
 let arr = [];
 let swap = false;
 for (let i = 0; i < 10; i++) {
- arr.push(getRandomInt(0, 1000));
+  arr.push(getRandomInt(0, 1000));
 }
 
 //bubbleSort function will sort the array of integers that is passed in
@@ -33,7 +33,7 @@ function bubbleSort(int) {
     return bubbleSort(int);
   } else {
     return int;
-    }
+  }
 }
 
 console.log(arr);
@@ -50,17 +50,17 @@ console.log(bubbleSort(arr));
 
 function mergeSort(int) {
   if (int.length < 2) return int;
-    let middle = Math.floor(int.length / 2);
-    let leftSide = int.slice(0, middle);
-    let rightSide = int.slice(middle);
-      return merge(mergeSort(leftSide), mergeSort(rightSide));
+  let middle = Math.floor(int.length / 2);
+  let leftSide = int.slice(0, middle);
+  let rightSide = int.slice(middle);
+  return merge(mergeSort(leftSide), mergeSort(rightSide));
 }
 
 function merge (left, right) {
   let result = [];
-    while (left.length && right.length)
-      result.push(left[0] < right[0]? left.shift() : right.shift());
-    return result.concat(left.length? left : right);
+  while (left.length && right.length)
+    result.push(left[0] < right[0]? left.shift() : right.shift());
+  return result.concat(left.length? left : right);
 }
 
 console.log(arr);
@@ -72,14 +72,14 @@ console.log(mergeSort(arr));
 function binarySearch(int, item, start=0, end = int.length-1) {
   let middle = Math.floor(start + (end-start)/2);
   //console.log(start, end, middle, int[middle]);
-    if (item == int[middle]) return middle;
-    else if (start>=end) return false;
-    else if (item < int[middle]) return binarySearch(int, item, start, middle-1);
-    else if (item > int[middle]) return binarySearch(int, item, middle+1, end);
+  if (item == int[middle]) return middle;
+  else if (start>=end) return false;
+  else if (item < int[middle]) return binarySearch(int, item, start, middle-1);
+  else if (item > int[middle]) return binarySearch(int, item, middle+1, end);
 }
 
 console.log(arr);
-console.log(binarySearch(arr));
+console.log(binarySearch(arr, 50));
 
 // Tests
 
