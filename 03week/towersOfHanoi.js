@@ -21,6 +21,7 @@ function printStacks() {
 //Moving the numbers over to each stack
 //We need to remove the last number in the startStack
 //And move it to the end of the endStack
+
 function movePiece(startStack, endStack) {
   stacks[endStack].push(stacks[startStack].pop());
 }
@@ -50,7 +51,7 @@ function checkForWin(startStack, endStack) {
 }
 //Aslong as the move is legal you can next move the block.
 //If the move is legal and we can move a piece we will next check for a win
-//
+
 function towersOfHanoi(startStack, endStack) {
   const validEntry = (myStack) => {
     const entry = ["a","b","c"];
