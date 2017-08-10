@@ -66,7 +66,7 @@ function merge (left, right) {
 console.log(arr);
 console.log(mergeSort(arr));
 
-//*******************************************************************************
+//******************************************************************************
 //BINARY SORT
 
 function binarySearch(int, item, start=0, end = int.length-1) {
