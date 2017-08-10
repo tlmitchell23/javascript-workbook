@@ -8,7 +8,9 @@ let jobTypes = {
   commander: 'Main Ship',
   programmer: 'Any Ship!'
 };
-
+//Creating a class for CrewMember will allow us to save the name, job, specialSkill, and ship
+//if we want to know which job the CrewMember performs you can use this.job
+//Within the CrewMember Class we have a method to have the CrewMember enter the ship
 
 class CrewMember {
   constructor(name, job, specialSkill, ship){
@@ -22,6 +24,11 @@ class CrewMember {
     theShip.crew.push(this);
   }
 }
+// The Ship class will hold the name of ship, type, and the ability of the ship
+// this class will also hold an array that will contain the crew
+// Next we will run a loop to make sure there is a crew to run the ship
+// If the ship has enough crew members it will perform its ability
+// If there are NOT enough crew members it will say it can't perform the mission yet
 
 class Ship {
   constructor(name, type, ability, crew) {
