@@ -8,10 +8,46 @@ let jobTypes = {
   commander: 'Main Ship',
   programmer: 'Any Ship!'
 };
+//Creating a class for CrewMember will allow us to save the name, job, specialSkill, and ship
+//if we want to know which job the CrewMember performs you can use this.job
+//Within the CrewMember Class we have a method to have the CrewMember enter the ship
 
-// Your code here
+class CrewMember {
+  constructor(name, job, specialSkill, ship){
+    this.name = name;
+    this.job = job;
+    this.specialSkill = specialSkill;
+    this.ship = null;
+  }
+  enterShip(theShip) {
+    this.ship = theShip;
+    theShip.crew.push(this);
+  }
+}
+// The Ship class will hold the name of ship, type, and the ability of the ship
+// this class will also hold an array that will contain the crew
+// Next we will run a loop to make sure there is a crew to run the ship
+// If the ship has enough crew members it will perform its ability
+// If there are NOT enough crew members it will say it can't perform the mission yet
 
-//tests
+class Ship {
+  constructor(name, type, ability, crew) {
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = [];
+  }
+
+  missionStatement() {
+   if(this.crew.length > 0) {
+     return this.ability;
+   } else {
+     return "Can't perform a mission yet."
+   }
+  }
+ }
+
+// Tests
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
     it('should have a name, a job, a specialSkill and ship upon instantiation', function(){
