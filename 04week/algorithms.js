@@ -9,52 +9,77 @@ function getRandomInt(min, max) {
 }
 
 let arr = [];
-
-for (let i = 0; i < 1000; i++) {
+let swap = false;
+for (let i = 0; i < 10; i++) {
  arr.push(getRandomInt(0, 1000));
 }
-//////////////////////////////////////////////////////////////////
-function bubbleSort(arr) {
-  for (i=0; i< arr.length; i++){
-    if (arr[i] > arr[i + 1]) {
-      let temp = arr[i]
-      arr[i] = arr[i+1];
-      arr[i+1] = temp;
+
+//bubbleSort function will sort the array of integers that is passed in
+//it does this by comparing array [n] to the array [n+1]
+//the smaller number will be moved to the left and the larger to the right
+//at the end of the sort it will show integers from smallest to the largest shown in an array
+
+function bubbleSort(int) {
+  for (let i=0; i < int.length; i++) {
+    if (int[i] > int[i + 1]) {
+      swap = true;
+      int[i+1] = int[i+1] - int[i];
+      int[i] = int[i] + int[i+1];
+      int[i+1] = int[i] - int[i+1];
     }
   }
+  if (swap) {
+    swap = false;
+    return bubbleSort(int);
+  } else {
+    return int;
+    }
 }
-bubbleSort(arr);
-/////////////////////////////////////////////////////////////////////
-function mergeSort(arr) {
-  if (arr.length < 2) return arr;
-  let middle = Math.floor(arr.length / 2);
-  let left  = arr.slice(0, middle);
-  let right = arr.slice(middle, arr.length);
-  return merge(mergeSort(left), mergeSort(right));
+
+console.log(arr);
+console.log(bubbleSort(arr));
+
+//**********************************************************************************************************
+//MERGE SORT
+//We will pass an array of random integers into mergeSort function to be sorted
+//we will divide the array in half
+//We will slice the left side of the array up until the middle number
+//the right side will be starting after the middle number
+//next sort the left side and the right side
+//those number arrays will be merged back together
+
+function mergeSort(int) {
+  if (int.length < 2) return int;
+    let middle = Math.floor(int.length / 2);
+    let leftSide = int.slice(0, middle);
+    let rightSide = int.slice(middle);
+      return merge(mergeSort(leftSide), mergeSort(rightSide));
 }
+
 function merge (left, right) {
   let result = [];
-  while (left.length && right.length) {
-    if (left[0] <= right [0]){
-      result.push(left.shift());
-    } else {
-       result.push(right.shift());
-    }
-  }
-  while (left.length) result.push(left.shift());
-  while (right.length) result.push(right.shift());
-  return result;
-  }
-  mergeSort(arr);
-////////////////////////////////////////////////////////////////////////
-function binarySearch(arr, item) {
-// Your code here
- console.log(arr);
-
-
-
-
+    while (left.length && right.length)
+      result.push(left[0] < right[0]? left.shift() : right.shift());
+    return result.concat(left.length? left : right);
 }
+
+console.log(arr);
+console.log(mergeSort(arr));
+
+//********************************************************************************************************
+//BINARY SORT
+
+function binarySearch(int, item, start=0, end = int.length-1) {
+  let middle = Math.floor(start + (end-start)/2);
+  //console.log(start, end, middle, int[middle]);
+    if (item == int[middle]) return middle;
+    else if (start>=end) return false;
+    else if (item < int[middle]) return binarySearch(int, item, start, middle-1);
+    else if (item > int[middle]) return binarySearch(int, item, middle+1, end);
+}
+
+console.log(arr);
+console.log(binarySearch(arr));
 
 // Tests
 
