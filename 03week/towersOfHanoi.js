@@ -18,13 +18,14 @@ function printStacks() {
   console.log("b: " + stacks.b);
   console.log("c: " + stacks.c);
 }
+
 //Moving the numbers over to each stack
 //We need to remove the last number in the startStack
 //And move it to the end of the endStack
-
 function movePiece(startStack, endStack) {
   stacks[endStack].push(stacks[startStack].pop());
 }
+
 //We must confirm each move is legal
 //The start stack must have a number in it to move
 //The number in the array needs to be less than the number already in the stack
@@ -39,6 +40,7 @@ function isLegal(startStack, endStack) {
     return stacks[startStack][stacks[startStack].length-1] < stacks[endStack][stacks[endStack].length-1];
   }
 }
+
 //Check for a win after each move
 //In this case when all 4 numbers are in either stack a or b = Win!
 //This is for a 4 stack tower only
@@ -49,9 +51,9 @@ function checkForWin(startStack, endStack) {
     return false;
   }
 }
+
 //Aslong as the move is legal you can next move the block.
 //If the move is legal and we can move a piece we will next check for a win
-
 function towersOfHanoi(startStack, endStack) {
   const validEntry = (myStack) => {
     const entry = ["a","b","c"];
