@@ -47,7 +47,7 @@ class Ship {
   }
  }
 
-//tests
+// Tests
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
     it('should have a name, a job, a specialSkill and ship upon instantiation', function(){
