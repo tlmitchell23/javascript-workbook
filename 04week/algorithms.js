@@ -39,7 +39,7 @@ function bubbleSort(int) {
 console.log(arr);
 console.log(bubbleSort(arr));
 
-//**********************************************************************************************************
+//******************************************************************************
 //MERGE SORT
 //We will pass an array of random integers into mergeSort function to be sorted
 //we will divide the array in half
@@ -66,7 +66,7 @@ function merge (left, right) {
 console.log(arr);
 console.log(mergeSort(arr));
 
-//********************************************************************************************************
+//*******************************************************************************
 //BINARY SORT
 
 function binarySearch(int, item, start=0, end = int.length-1) {
