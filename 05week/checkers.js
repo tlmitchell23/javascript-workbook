@@ -7,9 +7,17 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
-function Checker() {
-  // Your code here
+// The color argument will help deciding the color of the Checker
+// if the color is white make the symbol white. If not make it black
+class Checker {
+  constructor(color) {
+    if (color === 'white') {
+      this.symbol = String.fromCharCode(0x125CB);
+    }
+    else {
+      this.symbol = String.fromCharCode(0x125CF);
+    }
+  }
 }
 
 function Board() {
@@ -52,7 +60,46 @@ function Board() {
     console.log(string);
   };
 
-  // Your code here
+  // Next we will place the checkers into an array to see our moves
+  // White checkers will be at the top of the board starting at row 0 and ending at row 2
+ // The black checkers will be at the bottom of the board  in rows 5, 6, 7.
+ // Place all checker moves into the this.checkers array
+   this.checkers = [];
+   this.createCheckers = function() {
+      const whitePositions =
+      [[0, 1], [0, 3], [0, 5], [0, 7],
+       [1, 0], [1, 2], [1, 4], [1, 6],
+       [2, 1], [2, 3], [2, 5], [2, 7]];
+
+    const blackPositions =
+     [[5, 0], [5, 2], [5, 4], [5, 6],
+      [6, 1], [6, 3], [6, 5], [6, 7],
+      [7, 0], [7, 2], [7, 4], [7, 6]];
+
+      // Use a loop to print out the checkers onto the grid
+      // The index of the white positions array and black positions array
+      // will go through the loop if it was entered for whichPiece and toWhere
+            for (var i = 0; i <= 11; i++) {
+        let checker = new Checker('white');
+        let pos = whitePositions[i];
+        this.checkers.push(checker);
+        this.grid[pos[0]][pos[1]] = checker;
+        let checkerBlack = new Checker('black');
+        pos = blackPositions[i];
+        this.checkers.push(checkerBlack);
+        this.grid[pos[0]][pos[1]] = checkerBlack;
+      }
+    }
+
+    // print the checker to the grid
+    this.selectChecker = function(row, column) {
+      return this.grid[row][column];
+    }
+
+    //We need to remove the checker that has been jumped
+    //
+     this.killChecker = function(position) {
+
 }
 function Game() {
 
@@ -60,9 +107,25 @@ function Game() {
 
   this.start = function() {
     this.board.createGrid();
-    // Your code here
-  };
-}
+      // Your code here
+     //placing checkers
+     this.board.createCheckers()
+    };
+
+   //Next create a this.moveChecker method that takes two parameters start, end.
+   //These two arguments will each contain a row and a column, eg. 50, 41.
+   //Inside the method, use your board helper method selectChecker to select the checker at your starting row column coordinates
+   //and set it to a local variable checker. Then set that spot on the grid to null and set the spot at the end row column coordinate to the checker.
+   //You should be able to move checkers around on the board now!
+   //making so players can move the checkers
+   this.moveChecker = function(start, end) {
+     //moving the checker and replacing the space it used to be in with null
+     const checker = this.board.selectChecker(start[0], start[1]);
+     this.board.grid[start[0]][start[1]] = null;
+     this.board.grid[end[0]][end[1]] = checker;
+  
+  }
+ }
 
 function getPrompt() {
   game.board.viewGrid();
