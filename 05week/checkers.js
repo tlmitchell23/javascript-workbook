@@ -79,7 +79,7 @@ function Board() {
       // Use a loop to print out the checkers onto the grid
       // The index of the white positions array and black positions array
       // will go through the loop if it was entered for whichPiece and toWhere
-            for (var i = 0; i <= 11; i++) {
+       for (var i = 0; i <= 11; i++) {
         let checker = new Checker('white');
         let pos = whitePositions[i];
         this.checkers.push(checker);
@@ -99,7 +99,13 @@ function Board() {
     //We need to remove the checker that has been jumped
     //
      this.killChecker = function(position) {
-
+      const checkerPositionKill = this.selectChecker(position[0], position[1]);
+      const checkerIndex = this.checkers.indexOf(checkerPositionKill);
+      if (checkerPositionKill !== null) {
+         this.checkers.splice(checkerIndex, 1);
+        this.grid[position[0]][position[1]] = null;
+    }
+  }
 }
 function Game() {
 
@@ -111,21 +117,32 @@ function Game() {
      //placing checkers
      this.board.createCheckers()
     };
-
-   //Next create a this.moveChecker method that takes two parameters start, end.
+    //Next, in your Game class, create a this.moveChecker method that takes two parameters start, end.
    //These two arguments will each contain a row and a column, eg. 50, 41.
    //Inside the method, use your board helper method selectChecker to select the checker at your starting row column coordinates
    //and set it to a local variable checker. Then set that spot on the grid to null and set the spot at the end row column coordinate to the checker.
    //You should be able to move checkers around on the board now!
    //making so players can move the checkers
    this.moveChecker = function(start, end) {
-     //moving the checker and replacing the space it used to be in with null
+     //moving the checker and nulling the spot where it was
      const checker = this.board.selectChecker(start[0], start[1]);
      this.board.grid[start[0]][start[1]] = null;
      this.board.grid[end[0]][end[1]] = checker;
-  
+     //setting variables to find the start and end spot of the move to jump a checker
+      const startRow = Number(start[0]);
+      const startColumn = Number(start[1]);
+      const endRow = Number(end[0]);
+      const endColumn = Number(end[1]);
+      // finding the spot of the checker that was jumped
+      const cord1 = (startRow + endRow) / 2;
+      const cord2 = (startColumn + endColumn) / 2;
+      const killPosition = [cord1, cord2];
+      //setting the absolute value of the start and end to make sure the player moved two spots for a jump.
+      // then calling the method to remove the jumped checker
+      if (Math.abs(startRow - endEow) ===  2)
+        this.board.killChecker(killPosition);
   }
- }
+}
 
 function getPrompt() {
   game.board.viewGrid();
